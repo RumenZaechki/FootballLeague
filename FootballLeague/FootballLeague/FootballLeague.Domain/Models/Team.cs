@@ -37,41 +37,6 @@ namespace FootballLeague.Domain.Models
 
         public IReadOnlyCollection<Player> Players => this.players.AsReadOnly();
 
-        public Team AddResult(ResultType result)
-        {
-            this.ResultActions[result].Invoke(this);
-
-            return this;
-        }
-
-        public int GetTeamSkill()
-        {
-            return this.Players.Sum(p => p.Skill);
-        }
-
-        public void AddPlayer(Player player)
-        {
-            this.players.Add(player);
-        }
-
-        public void RemovePlayer(Player player)
-        {
-            this.players.Remove(player);
-        }
-        public Team UpdateName(string name)
-        {
-            this.Name = name;
-
-            return this;
-        }
-
-        public Team UpdateRanking(int rank)
-        {
-            this.Rank = rank;
-
-            return this;
-        }
-
         private IDictionary<ResultType, Action<Team>> ResultActions => new Dictionary<ResultType, Action<Team>>()
         {
             [ResultType.Win] = (team) =>

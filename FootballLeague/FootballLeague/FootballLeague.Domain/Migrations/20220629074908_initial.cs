@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FootballLeague.Domain.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,7 +68,7 @@ namespace FootballLeague.Domain.Migrations
                     Position = table.Column<int>(type: "int", nullable: false),
                     Skill = table.Column<int>(type: "int", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TeamId = table.Column<int>(type: "int", nullable: false)
+                    TeamId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,8 +77,7 @@ namespace FootballLeague.Domain.Migrations
                         name: "FK_Players_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballLeague", "FootballL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballLeague.Domain", "FootballLeague.Domain\FootballLeague.Domain.csproj", "{02D60CA1-694E-4162-AC2E-5B689E26AF7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballLeague.Services", "FootballLeague.Services\FootballLeague.Services.csproj", "{CF743E17-8FC5-46D8-B735-0929142A274C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballLeague.Repositories", "FootballLeague.Repositories\FootballLeague.Repositories.csproj", "{D2C103E5-58EC-4A76-ABE0-928F970DDABB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{02D60CA1-694E-4162-AC2E-5B689E26AF7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02D60CA1-694E-4162-AC2E-5B689E26AF7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02D60CA1-694E-4162-AC2E-5B689E26AF7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF743E17-8FC5-46D8-B735-0929142A274C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF743E17-8FC5-46D8-B735-0929142A274C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF743E17-8FC5-46D8-B735-0929142A274C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF743E17-8FC5-46D8-B735-0929142A274C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2C103E5-58EC-4A76-ABE0-928F970DDABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2C103E5-58EC-4A76-ABE0-928F970DDABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2C103E5-58EC-4A76-ABE0-928F970DDABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2C103E5-58EC-4A76-ABE0-928F970DDABB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

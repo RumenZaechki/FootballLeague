@@ -16,60 +16,16 @@ namespace FootballLeague.Domain.Models
         }
 
         public int Id { get; set; }
-        public string FirstName { get; private set; }
+        public string FirstName { get; set; }
 
-        public string LastName { get; private set; }
+        public string LastName { get; set; }
 
-        public PositionType Position { get; private set; }
+        public PositionType Position { get; set; }
 
-        public int Skill { get; private set; }
+        public int Skill { get; set; }
 
-        public DateTime BirthDate { get; private set; }
+        public DateTime BirthDate { get; set; }
 
-        public Team Team { get; private set; }
-
-        public Player UpdateFirstName(string firstName)
-        {
-            this.FirstName = firstName;
-
-            return this;
-        }
-
-        public Player UpdateLastName(string lastName)
-        {
-            this.LastName = lastName;
-
-            return this;
-        }
-
-        public Player UpdatePosition(PositionType position)
-        {
-            this.Position = position;
-
-            return this;
-        }
-
-        public Player UpdatePosition(string position)
-        {
-            Enum.TryParse(typeof(PositionType), position, true, out object result);
-            this.Position = (PositionType)result;
-
-            return this;
-        }
-
-        public Player UpdateTeam(Team team)
-        {
-            this.Team = team;
-
-            return this;
-        }
-
-        public Player UpdateSkill(int skill)
-        {
-            this.Skill = skill;
-
-            return this;
-        }
-
+        public Team? Team { get; set; }
     }
 }

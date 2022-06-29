@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballLeague.Domain.Migrations
 {
     [DbContext(typeof(FootballDbContext))]
-    [Migration("20220629063159_Initial")]
-    partial class Initial
+    [Migration("20220629074908_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,7 +85,7 @@ namespace FootballLeague.Domain.Migrations
                     b.Property<int>("Skill")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeamId")
+                    b.Property<int?>("TeamId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -150,9 +150,7 @@ namespace FootballLeague.Domain.Migrations
                 {
                     b.HasOne("FootballLeague.Domain.Models.Team", "Team")
                         .WithMany("Players")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TeamId");
 
                     b.Navigation("Team");
                 });
