@@ -19,23 +19,23 @@ namespace FootballLeague.Domain.Models
         }
 
         public int Id { get; set; }
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public int Wins { get; private set; }
+        public int Wins { get; set; }
 
-        public int Draws { get; private set; }
+        public int Draws { get; set; }
 
-        public int Loses { get; private set; }
+        public int Losses { get; set; }
 
-        public int Points { get; private set; }
+        public int Points { get; set; }
 
-        public int Rank { get; private set; }
+        public int Rank { get; set; }
 
         public IReadOnlyCollection<Match> HomeMatchHistory => this.homeMatches.AsReadOnly();
 
         public IReadOnlyCollection<Match> AwayMatchHistory => this.awayMatches.AsReadOnly();
 
-        public IReadOnlyCollection<Player> Players => this.players.AsReadOnly();
+        public IReadOnlyCollection<Player> Players => this.players?.AsReadOnly();
 
         private IDictionary<ResultType, Action<Team>> ResultActions => new Dictionary<ResultType, Action<Team>>()
         {
@@ -51,7 +51,7 @@ namespace FootballLeague.Domain.Models
             },
             [ResultType.Lose] = (team) =>
             {
-                team.Loses++;
+                team.Losses++;
             }
         };
 

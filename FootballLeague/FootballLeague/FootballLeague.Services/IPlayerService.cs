@@ -1,4 +1,4 @@
-﻿using FootballLeague.Services.Models;
+﻿using FootballLeague.Services.Models.Players;
 
 namespace FootballLeague.Services
 {

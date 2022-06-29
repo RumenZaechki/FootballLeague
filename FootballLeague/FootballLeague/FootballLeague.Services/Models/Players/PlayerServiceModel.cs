@@ -1,4 +1,4 @@
-﻿namespace FootballLeague.Services.Models
+﻿namespace FootballLeague.Services.Models.Players
 {
     public class PlayerServiceModel
     {

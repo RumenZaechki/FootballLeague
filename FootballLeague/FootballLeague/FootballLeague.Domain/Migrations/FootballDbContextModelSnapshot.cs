@@ -104,7 +104,7 @@ namespace FootballLeague.Domain.Migrations
                     b.Property<int>("Draws")
                         .HasColumnType("int");
 
-                    b.Property<int>("Loses")
+                    b.Property<int>("Losses")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

@@ -27,7 +27,17 @@ namespace FootballLeague.Domain
                 .HasForeignKey(m => m.HomeTeamId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Team>()
+                .HasMany(t => t.Players)
+                .WithOne(p => p.Team);
+
+            modelBuilder.Entity<Team>()
+                .Navigation(t => t.AwayMatchHistory)
+                .HasField("awayMatches");
+
+            modelBuilder.Entity<Team>()
+                .Navigation(t => t.HomeMatchHistory)
+                .HasField("homeMatches");
         }
     }
 }

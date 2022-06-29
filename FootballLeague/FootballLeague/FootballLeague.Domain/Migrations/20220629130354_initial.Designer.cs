@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballLeague.Domain.Migrations
 {
     [DbContext(typeof(FootballDbContext))]
-    [Migration("20220629074908_initial")]
+    [Migration("20220629130354_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,7 +106,7 @@ namespace FootballLeague.Domain.Migrations
                     b.Property<int>("Draws")
                         .HasColumnType("int");
 
-                    b.Property<int>("Loses")
+                    b.Property<int>("Losses")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
