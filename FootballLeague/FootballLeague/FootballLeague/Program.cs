@@ -1,4 +1,5 @@
 using FootballLeague.Domain;
+using FootballLeague.ExceptionMiddleware;
 using FootballLeague.Repositories;
 using FootballLeague.Services;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,11 @@ builder.Services.AddScoped<ITeamService, TeamService>();
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<IMatchService, MatchService>();
 builder.Services.AddScoped<IMatchRepository, MatchRepository>();
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+var logger = serviceProvider.GetService<ILogger<ExceptionMiddleware>>();
+builder.Services.AddSingleton(typeof(ILogger), logger);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -34,6 +40,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.ConfigureCustomExceptionMiddleware();
 
 app.UseHttpsRedirection();
 
