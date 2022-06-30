@@ -14,6 +14,11 @@ namespace FootballLeague.Controllers
             this.matchService = matchService;
         }
 
+        /// <summary>
+        /// Create a match
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns>Match Object</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -32,6 +37,11 @@ namespace FootballLeague.Controllers
             return CreatedAtAction(nameof(ReadOneAsync), createdMatch);
         }
 
+        /// <summary>
+        /// Get details for a single match
+        /// </summary>
+        /// <param name="id">Match ID</param>
+        /// <returns>Match Object</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -45,6 +55,10 @@ namespace FootballLeague.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get details for all matches that are already played
+        /// </summary>
+        /// <returns>List of Match Objects</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ReadAllPlayedAsync()
@@ -53,6 +67,11 @@ namespace FootballLeague.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Play a match 
+        /// </summary>
+        /// <param name="id">Match ID</param>
+        /// <returns>Match Object</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -66,6 +85,11 @@ namespace FootballLeague.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Delete a match
+        /// </summary>
+        /// <param name="id">Match ID</param>
+        /// <returns>Match Object</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

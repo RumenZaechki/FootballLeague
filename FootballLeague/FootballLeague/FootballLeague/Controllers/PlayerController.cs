@@ -14,6 +14,13 @@ namespace FootballLeague.Controllers
             this.playerService = playerService;
         }
 
+        /// <summary>
+        /// Create a new player
+        /// </summary>
+        /// <param name="player">
+        /// Available positions = Goalkeeper, Defender, Midfield, Striker.
+        /// Team ID is not required on creation</param>
+        /// <returns>Player Object</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -30,6 +37,11 @@ namespace FootballLeague.Controllers
             return CreatedAtAction(nameof(ReadOneAsync), createdPlayer);
         }
 
+        /// <summary>
+        /// Get details for a single player
+        /// </summary>
+        /// <param name="id">Player ID</param>
+        /// <returns>Player Object</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -43,6 +55,10 @@ namespace FootballLeague.Controllers
             return Ok(player);
         }
 
+        /// <summary>
+        /// Get details for all players that are not in a team
+        /// </summary>
+        /// <returns>List of Player Objects</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ReadAllNotInTeamAsync()
@@ -51,6 +67,12 @@ namespace FootballLeague.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Update player details
+        /// </summary>
+        /// <param name="id">Player Id</param>
+        /// <param name="player"></param>
+        /// <returns>Player Object</returns>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -69,6 +91,11 @@ namespace FootballLeague.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete player
+        /// </summary>
+        /// <param name="id">Player ID</param>
+        /// <returns>Player Object</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

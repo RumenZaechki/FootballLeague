@@ -14,7 +14,7 @@ namespace FootballLeague.Services
         public async Task<TeamServiceModel> CreateAsync(string name)
         {
             var result = await this.teamRepository.CreateTeamAsync(name);
-            var team = new TeamServiceModel//this is getting a bit repetitive as well, maybe I should use a mapper, but I'll see what I can do later
+            var team = new TeamServiceModel//this is getting a bit repetitive as well, maybe I should use AutoMapper, but I'll see what I can do later
             {
                 Name = result.Name,
                 Wins = result.Wins,

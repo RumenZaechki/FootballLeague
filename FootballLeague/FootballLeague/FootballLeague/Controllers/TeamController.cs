@@ -14,6 +14,11 @@ namespace FootballLeague.Controllers
             this.teamService = teamService;
         }
 
+        /// <summary>
+        /// Create a team
+        /// </summary>
+        /// <param name="name">Name of Team</param>
+        /// <returns>Team Object</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -27,6 +32,11 @@ namespace FootballLeague.Controllers
             return CreatedAtAction(nameof(ReadOneAsync), createdTeam);
         }
 
+        /// <summary>
+        /// Get details for a single team
+        /// </summary>
+        /// <param name="id">Team ID</param>
+        /// <returns>Team Object</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -40,6 +50,10 @@ namespace FootballLeague.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get details of all teams
+        /// </summary>
+        /// <returns>List of Team Objects</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ReadAllAsync()
@@ -48,6 +62,12 @@ namespace FootballLeague.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Update team details
+        /// </summary>
+        /// <param name="id">Team ID</param>
+        /// <param name="team"></param>
+        /// <returns>Team Object</returns>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -63,9 +83,14 @@ namespace FootballLeague.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(result);
         }
 
+        /// <summary>
+        /// Delete team
+        /// </summary>
+        /// <param name="id">Team ID</param>
+        /// <returns>Team Object</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

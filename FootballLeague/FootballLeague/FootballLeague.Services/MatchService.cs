@@ -42,9 +42,9 @@ namespace FootballLeague.Services
             {
                 PlayedOn = result.PlayedOn,
                 HomeTeamId = result.HomeTeamId,
-                HomeTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(result.HomeTeamId),
+                HomeTeamName = result.HomeTeam.Name,
                 AwayTeamId = result.AwayTeamId,
-                AwayTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(result.AwayTeamId),
+                AwayTeamName = result.AwayTeam.Name,
                 HomeScore = result.HomeScore,
                 AwayScore = result.AwayScore,
                 Stadium = result.Stadium
@@ -54,37 +54,19 @@ namespace FootballLeague.Services
         public async Task<List<MatchServiceModel>> ReadAllPlayedAsync()
         {
             var result = await this.matchRepository.ReadAllPlayedAsync();
-            var models = new List<MatchServiceModel>();
-            foreach (var item in result)
-            {
-                var model = new MatchServiceModel
+            return result
+                .Select(m => new MatchServiceModel
                 {
-                    PlayedOn = item.PlayedOn,
-                    HomeTeamId = item.HomeTeamId,
-                    HomeTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(item.HomeTeamId),
-                    AwayTeamId = item.AwayTeamId,
-                    AwayTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(item.AwayTeamId),
-                    HomeScore = item.HomeScore,
-                    AwayScore = item.AwayScore,
-                    Stadium = item.Stadium
-                };
-                models.Add(model);
-            }
-            return models;
-            //this doesn't seem to work, I guess I'll have to do it the old-fashioned way
-            //return result
-            //    .Select(async m => new MatchServiceModel
-            //    {
-            //        PlayedOn = m.PlayedOn,
-            //        HomeTeamId = m.HomeTeamId,
-            //        HomeTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(m.HomeTeamId),
-            //        AwayTeamId = m.AwayTeamId,
-            //        AwayTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(m.AwayTeamId),
-            //        HomeScore = m.HomeScore,
-            //        AwayScore = m.AwayScore,
-            //        Stadium = m.Stadium
-            //    })
-            //    .ToList();
+                    PlayedOn = m.PlayedOn,
+                    HomeTeamId = m.HomeTeamId,
+                    HomeTeamName = m.HomeTeam.Name,
+                    AwayTeamId = m.AwayTeamId,
+                    AwayTeamName = m.AwayTeam.Name,
+                    HomeScore = m.HomeScore,
+                    AwayScore = m.AwayScore,
+                    Stadium = m.Stadium
+                })
+                .ToList();
         }
 
         public async Task<MatchServiceModel> PlayAsync(int id)
@@ -98,9 +80,9 @@ namespace FootballLeague.Services
             {
                 PlayedOn = result.PlayedOn,
                 HomeTeamId = result.HomeTeamId,
-                HomeTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(result.HomeTeamId),
+                HomeTeamName = result.HomeTeam.Name,
                 AwayTeamId = result.AwayTeamId,
-                AwayTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(result.AwayTeamId),
+                AwayTeamName = result.AwayTeam.Name,
                 HomeScore = result.HomeScore,
                 AwayScore = result.AwayScore,
                 Stadium = result.Stadium
@@ -118,9 +100,9 @@ namespace FootballLeague.Services
             {
                 PlayedOn = result.PlayedOn,
                 HomeTeamId = result.HomeTeamId,
-                HomeTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(result.HomeTeamId),
+                HomeTeamName = result.HomeTeam.Name,
                 AwayTeamId = result.AwayTeamId,
-                AwayTeamName = await this.matchRepository.GetTeamNameFromMatchAsync(result.AwayTeamId),
+                AwayTeamName = result.AwayTeam.Name,
                 HomeScore = result.HomeScore,
                 AwayScore = result.AwayScore,
                 Stadium = result.Stadium

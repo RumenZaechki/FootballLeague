@@ -47,7 +47,10 @@ namespace FootballLeague.Repositories
 
         public async Task<Match> ReadOneAsync(int id)
         {
-            var match = await this.data.Matches.FindAsync(id);
+            var match = await this.data.Matches
+                .Include(m => m.HomeTeam)
+                .Include(m => m.AwayTeam)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (match == null)
             {
                 return null;
@@ -55,15 +58,11 @@ namespace FootballLeague.Repositories
             return match;
         }
 
-        public async Task<string> GetTeamNameFromMatchAsync(int id)
-        {
-            Team team = await this.data.Teams.FindAsync(id);
-            return team.Name;//I'm not sure whether this methoud should be here or in the TeamRepository class
-        }
-
         public async Task<List<Match>> ReadAllPlayedAsync()
         {
             return await this.data.Matches
+                .Include(m => m.HomeTeam)
+                .Include(m => m.AwayTeam)
                 .Where(m => m.PlayedOn != null)
                 .ToListAsync();
         }
@@ -71,7 +70,11 @@ namespace FootballLeague.Repositories
         public async Task<Match> PlayAsync(int id)
         {
             //I guess this will be the update method for the match - there's no point in changing the homeTeam name after the match is played, for instance
-            var match = await this.data.Matches.FindAsync(id);
+            var match = await this.data.Matches
+                .Include(m => m.HomeTeam)
+                .Include(m => m.AwayTeam)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (match == null)
             {
                 return null;
@@ -107,7 +110,11 @@ namespace FootballLeague.Repositories
 
         public async Task<Match> DeleteAsync(int id)
         {
-            var match = await this.data.Matches.FindAsync(id);
+            var match = await this.data.Matches
+                .Include(m => m.HomeTeam)
+                .Include(m => m.AwayTeam)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (match == null)
             {
                 return null;

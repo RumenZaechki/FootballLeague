@@ -18,7 +18,7 @@ namespace FootballLeague.Repositories
             Enum.TryParse(typeof(PositionType), position, true, out object result);
             if (!IsValid(firstName, lastName, position, skill, birthDate))
             {
-                return null;//this probably isn't the best idea ever, but I'll fix it later, if I have the time.
+                return null;
             }
             Player player = new Player(firstName, lastName, skill, (PositionType)result, birthDate);
             if (TeamExists(teamId))
@@ -32,7 +32,9 @@ namespace FootballLeague.Repositories
 
         public async Task<Player> ReadOneAsync(int id)
         {
-            var player = await this.data.Players.FindAsync(id);
+            var player = await this.data.Players
+                .Include(p => p.Team)
+                .FirstOrDefaultAsync(p => p.Id == id);
             return player;
         }
 
