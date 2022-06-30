@@ -4,18 +4,19 @@ namespace FootballLeague.Domain.Models
 {
     public class Team
     {
-        private readonly List<Player> players;
-        private readonly List<Match> homeMatches;
-        private readonly List<Match> awayMatches;
+        public Team() 
+        {
+            this.Players = new List<Player>();
+            this.HomeMatches = new List<Match>();
+            this.AwayMatches = new List<Match>();
+        }
 
-        public Team() { }
-
-        public Team(string name, IEnumerable<Player> players)
+        public Team(string name)
         {
             this.Name = name;
-            this.players = players?.ToList() ?? new List<Player>();
-            this.awayMatches = new List<Match>();
-            this.homeMatches = new List<Match>();
+            this.Players = new List<Player>();
+            this.HomeMatches = new List<Match>();
+            this.AwayMatches = new List<Match>();
         }
 
         public int Id { get; set; }
@@ -31,29 +32,8 @@ namespace FootballLeague.Domain.Models
 
         public int Rank { get; set; }
 
-        public IReadOnlyCollection<Match> HomeMatchHistory => this.homeMatches.AsReadOnly();
-
-        public IReadOnlyCollection<Match> AwayMatchHistory => this.awayMatches.AsReadOnly();
-
-        public IReadOnlyCollection<Player> Players => this.players?.AsReadOnly();
-
-        private IDictionary<ResultType, Action<Team>> ResultActions => new Dictionary<ResultType, Action<Team>>()
-        {
-            [ResultType.Win] = (team) =>
-            {
-                team.Points += 3;
-                team.Wins++;
-            },
-            [ResultType.Draw] = (team) =>
-            {
-                team.Points += 1;
-                team.Draws++;
-            },
-            [ResultType.Lose] = (team) =>
-            {
-                team.Losses++;
-            }
-        };
-
+        public List<Player> Players { get; set; }
+        public List<Match> HomeMatches { get; set; }
+        public List<Match> AwayMatches { get; set; }
     }
 }

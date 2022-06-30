@@ -58,7 +58,9 @@ namespace FootballLeague.Repositories
             player.BirthDate = birthDate;
             if (TeamExists(teamId))
             {
-                player.Team = await this.data.Teams.FirstOrDefaultAsync(t => t.Id == teamId);
+                var team = await this.data.Teams.FirstOrDefaultAsync(t => t.Id == teamId);
+                player.Team = team;
+                team.Players.Add(player);
             }
             this.data.SaveChangesAsync();
             return player;

@@ -12,7 +12,7 @@
         }
 
         public int Id { get; set; }
-        public DateTime? PlayedOn { get; private set; }
+        public DateTime? PlayedOn { get; set; }
 
         public Team HomeTeam { get; private set; }
 
@@ -22,9 +22,9 @@
 
         public int AwayTeamId { get; private set; }
 
-        public int HomeScore { get; private set; }
+        public int HomeScore { get; set; }
 
-        public int AwayScore { get; private set; }
+        public int AwayScore { get; set; }
 
         public string Stadium { get; private set; }
     }

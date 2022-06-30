@@ -18,7 +18,7 @@ namespace FootballLeague.Repositories
             {
                 return null;
             }
-            var team = new Team(name, new List<Player>());
+            var team = new Team(name);
             await this.data.Teams.AddAsync(team);
             await this.data.SaveChangesAsync();
             return team;
@@ -54,11 +54,14 @@ namespace FootballLeague.Repositories
 
         public async Task<Team> DeleteAsync(int id)
         {
-            var team = await this.data.Teams.FindAsync(id);
+            var team = await this.data.Teams
+                .Include(t => t.Players)
+                .FirstOrDefaultAsync(x => x.Id == id);
             if (team == null)
             {
                 return null;
             }
+            
             this.data.Teams.Remove(team);
             await this.data.SaveChangesAsync();
             return team;

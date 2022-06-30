@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballLeague.Domain.Migrations
 {
     [DbContext(typeof(FootballDbContext))]
-    [Migration("20220629130354_initial")]
+    [Migration("20220630121253_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,13 +130,13 @@ namespace FootballLeague.Domain.Migrations
             modelBuilder.Entity("FootballLeague.Domain.Models.Match", b =>
                 {
                     b.HasOne("FootballLeague.Domain.Models.Team", "AwayTeam")
-                        .WithMany("AwayMatchHistory")
+                        .WithMany("AwayMatches")
                         .HasForeignKey("AwayTeamId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballLeague.Domain.Models.Team", "HomeTeam")
-                        .WithMany("HomeMatchHistory")
+                        .WithMany("HomeMatches")
                         .HasForeignKey("HomeTeamId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -157,9 +157,9 @@ namespace FootballLeague.Domain.Migrations
 
             modelBuilder.Entity("FootballLeague.Domain.Models.Team", b =>
                 {
-                    b.Navigation("AwayMatchHistory");
+                    b.Navigation("AwayMatches");
 
-                    b.Navigation("HomeMatchHistory");
+                    b.Navigation("HomeMatches");
 
                     b.Navigation("Players");
                 });

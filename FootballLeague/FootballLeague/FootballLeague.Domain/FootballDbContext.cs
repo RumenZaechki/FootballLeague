@@ -16,28 +16,24 @@ namespace FootballLeague.Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Match>()
-                .HasOne(m => m.AwayTeam)
-                .WithMany(t => t.AwayMatchHistory)
-                .HasForeignKey(m => m.AwayTeamId)
-                .OnDelete(DeleteBehavior.Restrict);
+               .HasOne(m => m.HomeTeam)
+               .WithMany(t => t.HomeMatches)
+               .HasForeignKey(m => m.HomeTeamId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .IsRequired();
 
             modelBuilder.Entity<Match>()
-                .HasOne(m => m.HomeTeam)
-                .WithMany(t => t.HomeMatchHistory)
-                .HasForeignKey(m => m.HomeTeamId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(m => m.AwayTeam)
+                .WithMany(t => t.AwayMatches)
+                .HasForeignKey(m => m.AwayTeamId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
 
             modelBuilder.Entity<Team>()
                 .HasMany(t => t.Players)
                 .WithOne(p => p.Team);
 
-            modelBuilder.Entity<Team>()
-                .Navigation(t => t.AwayMatchHistory)
-                .HasField("awayMatches");
-
-            modelBuilder.Entity<Team>()
-                .Navigation(t => t.HomeMatchHistory)
-                .HasField("homeMatches");
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

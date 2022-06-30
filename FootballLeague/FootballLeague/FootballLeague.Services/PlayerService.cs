@@ -68,7 +68,7 @@ namespace FootballLeague.Services
         public async Task<PlayerServiceModel> UpdateAsync(int id, string firstName, string lastName, string Position, int Skill, DateTime birthDate, int teamId)
         {
             var result = await this.playerRepository.UpdateAsync(id, firstName, lastName, Position, Skill, birthDate, teamId);
-            if (playerRepository == null)//I know this check gets a bit repetitive, I probably should put it in a separate method, but I'll probably do that at a later time
+            if (result == null)//I know this check gets a bit repetitive, I probably should put it in a separate method, but I'll probably do that at a later time
             {
                 return null;
             }
